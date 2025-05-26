@@ -12,14 +12,12 @@ erDiagram
         object assetManager NO
         Transaction[] transactions NO
     }
-
     AssetManager {
         string amId NO
         string amName YES
         string amLocation YES
         string amAddress NO
     }
-
     Transaction {
         string transactionId YES
         string externalRef YES
@@ -32,19 +30,16 @@ erDiagram
         Debitor debitor YES
         Amount amount YES
     }
-
     Dates {
         date valueDate YES
         date executionDate YES
     }
-
     Creditor {
         string creditorIban YES
         string creditorAccountRef NO
         string bookingTextCreditor YES
         string reasonCreditor YES
     }
-
     Debitor {
         string debtorName YES
         string debtorIban YES
@@ -52,12 +47,10 @@ erDiagram
         string bookingTextDebitor YES
         string reasonDebitor YES
     }
-
     Amount {
         string currency YES
         float amount YES
     }
-
     PaymentOrder ||--|| AssetManager : hasOne
     PaymentOrder ||--o{ Transaction : hasMany
     Transaction ||--|| Dates : hasOne
