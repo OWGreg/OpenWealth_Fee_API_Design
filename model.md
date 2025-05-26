@@ -56,12 +56,12 @@ erDiagram
         float amount
     }
 
-    PaymentOrder ||--|| AssetManager : belongsTo
-    PaymentOrder ||--o{ Transaction : includes
-    Transaction ||--|| Dates : has
-    Transaction ||--|| Creditor : paysTo
-    Transaction ||--|| Debitor : paidBy
-    Transaction ||--|| Amount : involves
+    PaymentOrder ||--|| AssetManager : hasOne
+    PaymentOrder ||--o{ Transaction : hasMany
+    Transaction ||--|| Dates : hasOne
+    Transaction ||--|| Creditor : hasOne
+    Transaction ||--|| Debitor : hasOne
+    Transaction ||--|| Amount : hasOne
 ```
 
 ---
