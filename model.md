@@ -1,4 +1,4 @@
-**Entity Relationships of a Fee Payment Order**
+**Entity Relationships of a Payment Order**
 
 ```mermaid
 erDiagram
@@ -6,52 +6,53 @@ erDiagram
     PaymentOrder {
         string paymentOrderId
         date creationDate
-        enum status "PENDING, SENT, EXECUTED, FAILED"
+        enum status
         object assetManager
         Transaction[] transactions
     }
 
     AssetManager {
-        string amId "LEI, UID or internal ID"
+        string amId
         string amName
         string amLocation
+        string amAddress
     }
 
     Transaction {
         string transactionId
+        string externalRef
+        enum type
+        boolean performanceRelevant
+        enum statementOption
+        boolean nameClientInStatement
         object details
         Creditor creditor
-        Debtor debtor
+        Debitor debitor
         Amount amount
     }
 
     Details {
-        string externalRef
-        enum type "e.g. Management Fee"
-        string bookingTextCreditor
-        string bookingTextDebitor
-        string reasonCreditor
-        string reasonDebtor
         date valueDate
         date executionDate
-        boolean performanceRelevant
-        enum statementOption "Standard, yes, no"
-        boolean nameClientInStatement
     }
 
     Creditor {
-        string creditorName
-        string creditorLocation
+        string creditorIban
+        string creditorAccountRef
+        string bookingTextCreditor
+        string reasonCreditor
     }
 
-    Debtor {
+    Debitor {
         string debtorName
         string debtorIban
         string debtorAccountRef
+        string bookingTextDebitor
+        string reasonDebitor
     }
 
     Amount {
-        string currency "ISO 4217"
+        string currency
         float amount
     }
 
@@ -59,5 +60,14 @@ erDiagram
     PaymentOrder ||--o{ Transaction : includes
     Transaction ||--|| Details : has
     Transaction ||--|| Creditor : paysTo
-    Transaction ||--|| Debtor : paidBy
+    Transaction ||--|| Debitor : paidBy
     Transaction ||--|| Amount : involves
+```
+
+---
+
+### 🛑 Out-of-Scope Fields
+
+| Field                  | Reason for Exclusion                                                                 |
+|------------------------|--------------------------------------------------------------------------------------|
+| `creditorIbanCurrency` | The target account's currency is determined by the IBAN itself; value is redundant.  |
