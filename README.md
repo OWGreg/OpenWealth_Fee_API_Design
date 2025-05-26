@@ -28,4 +28,4 @@ This project is open for input, collaboration, and contributions from all stakeh
 
 ---
 
-Made with 💡 and 🧠 by OpenWealth contributors.
+Made by Gregory Niggli for the Open Wealth Assosciation
