@@ -1,3 +1,8 @@
+**SFTI Payment API – Reference Entity Model for Comparison**
+
+_This model serves as a simplified representation of the SFTI CA Payment API data structure. It is created solely for comparison purposes to assess whether the planned OpenWealth fee specification could be mapped to the SFTI Payment interface._
+
+```mermaid
 erDiagram
 
     BulkRequest {
