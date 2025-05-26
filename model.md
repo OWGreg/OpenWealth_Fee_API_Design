@@ -1,70 +1,68 @@
 **Entity Relationships of a Payment Order**
 
-_Third column "SFTI" = field is part of SFTI CA Payment API_
+mermaid
+erDiagram
 
-```mermaid
-classDiagram
+    PaymentOrder {
+        string paymentOrderId
+        date creationDate
+        enum status
+        object assetManager
+        Transaction[] transactions
+    }
 
-class PaymentOrder {
-    +string paymentOrderId SFTI
-    +date creationDate
-    +enum status
-    +object assetManager
-    +Transaction[] transactions
-}
+    AssetManager {
+        string amId
+        string amName
+        string amLocation
+        string amAddress
+    }
 
-class AssetManager {
-    +string amId
-    +string amName SFTI
-    +string amLocation SFTI
-    +string amAddress
-}
+    Transaction {
+        string transactionId
+        string externalRef
+        enum type
+        boolean performanceRelevant
+        enum statementOption
+        boolean nameClientInStatement
+        object dates
+        Creditor creditor
+        Debitor debitor
+        Amount amount
+    }
 
-class Transaction {
-    +string transactionId SFTI
-    +string externalRef SFTI
-    +enum type SFTI
-    +boolean performanceRelevant SFTI
-    +enum statementOption SFTI
-    +boolean nameClientInStatement SFTI
-    +object dates
-    +Creditor creditor SFTI
-    +Debitor debitor SFTI
-    +Amount amount SFTI
-}
+    Dates {
+        date valueDate
+        date executionDate
+    }
 
-class Dates {
-    +date valueDate SFTI
-    +date executionDate SFTI
-}
+    Creditor {
+        string creditorIban
+        string creditorAccountRef
+        string bookingTextCreditor
+        string reasonCreditor
+    }
 
-class Creditor {
-    +string creditorIban SFTI
-    +string creditorAccountRef
-    +string bookingTextCreditor SFTI
-    +string reasonCreditor SFTI
-}
+    Debitor {
+        string debtorName
+        string debtorIban
+        string debtorAccountRef
+        string bookingTextDebitor
+        string reasonDebitor
+    }
 
-class Debitor {
-    +string debtorName SFTI
-    +string debtorIban SFTI
-    +string debtorAccountRef SFTI
-    +string bookingTextDebitor SFTI
-    +string reasonDebitor SFTI
-}
+    Amount {
+        string currency
+        float amount
+    }
 
-class Amount {
-    +string currency SFTI
-    +float amount SFTI
-}
+    PaymentOrder ||--|| AssetManager : hasOne
+    PaymentOrder ||--o{ Transaction : hasMany
+    Transaction ||--|| Dates : hasOne
+    Transaction ||--|| Creditor : hasOne
+    Transaction ||--|| Debitor : hasOne
+    Transaction ||--|| Amount : hasOne
 
-PaymentOrder --> AssetManager : hasOne
-PaymentOrder --> Transaction : hasMany
-Transaction --> Dates : hasOne
-Transaction --> Creditor : hasOne
-Transaction --> Debitor : hasOne
-Transaction --> Amount : hasOne
-```
 
 ---
 
@@ -72,4 +70,4 @@ Transaction --> Amount : hasOne
 
 | Field                  | Reason for Exclusion                                                                 |
 |------------------------|--------------------------------------------------------------------------------------|
-| `creditorIbanCurrency` | The target account's currency is determined by the IBAN itself; value is redundant.  |
+| creditorIbanCurrency | The target account's currency is determined by the IBAN itself; value is redundant.  |
