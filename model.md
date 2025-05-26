@@ -1,13 +1,12 @@
-**Entity Relationships of a Payment Order (color-coded)**
+**Entity Relationships of a Payment Order**
 
-_🟢 Green = SFTI-compatible entity (all fields)_  
-_🔴 Red = Not part of current SFTI CA Payment API (or mostly incompatible)_
+_Third column "SFTI" = field is part of SFTI CA Payment API_
 
 ```mermaid
 classDiagram
 
 class PaymentOrder {
-    +string paymentOrderId
+    +string paymentOrderId SFTI
     +date creationDate
     +enum status
     +object assetManager
@@ -16,47 +15,47 @@ class PaymentOrder {
 
 class AssetManager {
     +string amId
-    +string amName
-    +string amLocation
+    +string amName SFTI
+    +string amLocation SFTI
     +string amAddress
 }
 
 class Transaction {
-    +string transactionId
-    +string externalRef
-    +enum type
-    +boolean performanceRelevant
-    +enum statementOption
-    +boolean nameClientInStatement
+    +string transactionId SFTI
+    +string externalRef SFTI
+    +enum type SFTI
+    +boolean performanceRelevant SFTI
+    +enum statementOption SFTI
+    +boolean nameClientInStatement SFTI
     +object dates
-    +Creditor creditor
-    +Debitor debitor
-    +Amount amount
+    +Creditor creditor SFTI
+    +Debitor debitor SFTI
+    +Amount amount SFTI
 }
 
 class Dates {
-    +date valueDate
-    +date executionDate
+    +date valueDate SFTI
+    +date executionDate SFTI
 }
 
 class Creditor {
-    +string creditorIban
+    +string creditorIban SFTI
     +string creditorAccountRef
-    +string bookingTextCreditor
-    +string reasonCreditor
+    +string bookingTextCreditor SFTI
+    +string reasonCreditor SFTI
 }
 
 class Debitor {
-    +string debtorName
-    +string debtorIban
-    +string debtorAccountRef
-    +string bookingTextDebitor
-    +string reasonDebitor
+    +string debtorName SFTI
+    +string debtorIban SFTI
+    +string debtorAccountRef SFTI
+    +string bookingTextDebitor SFTI
+    +string reasonDebitor SFTI
 }
 
 class Amount {
-    +string currency
-    +float amount
+    +string currency SFTI
+    +float amount SFTI
 }
 
 PaymentOrder --> AssetManager : hasOne
@@ -65,12 +64,6 @@ Transaction --> Dates : hasOne
 Transaction --> Creditor : hasOne
 Transaction --> Debitor : hasOne
 Transaction --> Amount : hasOne
-
-classDef SFTI fill:#cfc,stroke:#0c0,color:#000;
-classDef nonSFTI fill:#fcc,stroke:#900,color:#000;
-
-class Dates,Creditor,Debitor,Amount SFTI
-class PaymentOrder,AssetManager nonSFTI
 ```
 
 ---
