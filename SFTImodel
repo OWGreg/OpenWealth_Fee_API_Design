@@ -1,0 +1,60 @@
+erDiagram
+
+    BulkRequest {
+        string bulkOrderId
+        Transaction[] transactionList
+    }
+
+    Transaction {
+        string externalReferenceNumber
+        enum transactionType
+        string bookingTextCreditor
+        string bookingTextDebitor
+        string transactionReasonCreditor
+        string transactionReasonDebitor
+        date valueDate
+        date executionDate
+        boolean performanceRelevance
+        enum statementOption
+        boolean namingClient
+        string currency
+        float currencyAmount
+        Creditor creditor
+        Debitor debitor
+    }
+
+    Creditor {
+        string institutionName
+        string institutionLocation
+        string creditorIban
+    }
+
+    Debitor {
+        string debitorName
+        string debitorIban
+        string debitorAccount
+    }
+
+    BulkResponse {
+        string bulkOrderId
+        HTMLCode htmlCode
+    }
+
+    StatusResponse {
+        string bulkOrderId
+        TransactionStatus[] transactionList
+    }
+
+    TransactionStatus {
+        string transactionId
+        string externalReferenceNumber
+        string status
+        date valueDate
+        date executionDate
+        string errorDetails
+    }
+
+    BulkRequest ||--o{ Transaction : contains
+    Transaction ||--|| Creditor : paysTo
+    Transaction ||--|| Debitor : paidBy
+    StatusResponse ||--o{ TransactionStatus : tracks
