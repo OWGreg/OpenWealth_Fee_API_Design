@@ -1,7 +1,7 @@
 **Entity Relationships of a Payment Order (color-coded)**
 
-_🟢 Green = SFTI-compatible field_  
-_🔴 Red = Not part of current SFTI CA Payment API_
+_🟢 Green = SFTI-compatible entity (all fields)_  
+_🔴 Red = Not part of current SFTI CA Payment API (or mostly incompatible)_
 
 ```mermaid
 classDiagram
@@ -66,12 +66,11 @@ Transaction --> Creditor : hasOne
 Transaction --> Debitor : hasOne
 Transaction --> Amount : hasOne
 
-class paymentOrderId,amName,amLocation,transactionId,externalRef,type,performanceRelevant,statementOption,nameClientInStatement,valueDate,executionDate,creditorIban,bookingTextCreditor,reasonCreditor,debtorName,debtorIban,debtorAccountRef,bookingTextDebitor,reasonDebitor,currency,amount SFTI
-
-class amId,amAddress,creationDate,status,assetManager,transactions,creditorAccountRef nonSFTI
-
 classDef SFTI fill:#cfc,stroke:#0c0,color:#000;
 classDef nonSFTI fill:#fcc,stroke:#900,color:#000;
+
+class Dates,Creditor,Debitor,Amount SFTI
+class PaymentOrder,AssetManager nonSFTI
 ```
 
 ---
