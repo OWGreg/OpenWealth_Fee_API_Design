@@ -1,10 +1,13 @@
 **Entity Relationships of a Payment Order**
 
+_✅ = field is mappable via SFTI CA Payment API_  
+_❌ = field is not supported by current SFTI CA Payment API version_
+
 ```mermaid
 erDiagram
 
     PaymentOrder {
-        string paymentOrderId ✅
+        string paymentOrderId ❌
         date creationDate ❌
         enum status ❌
         object assetManager ❌
