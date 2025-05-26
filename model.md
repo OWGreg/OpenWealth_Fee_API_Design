@@ -66,33 +66,33 @@ erDiagram
 
 ---
 
-### ✅ SFTI Compatibility Table
+### SFTI Compatibility Table
 
 | Entity        | Field                   | SFTI | SFTI Field Name         | SFTI Path                                      |
-|---------------|--------------------------|------|
-| PaymentOrder  | paymentOrderId           | YES  | -                         | -  |
-| PaymentOrder  | creationDate             | NO   |
-| PaymentOrder  | status                   | NO   |
-| PaymentOrder  | assetManager             | NO   |
-| PaymentOrder  | transactions             | NO   |
-| AssetManager  | amId                     | NO   |
+|---------------|--------------------------|------|------------------------|------------------------------------------------|
+| PaymentOrder  | paymentOrderId           | YES  | -                      | -                                              |
+| PaymentOrder  | creationDate             | NO   |||
+| PaymentOrder  | status                   | NO   |||
+| PaymentOrder  | assetManager             | NO   |||
+| PaymentOrder  | transactions             | NO   |||
+| AssetManager  | amId                     | NO   |||
 | AssetManager  | amName                   | YES  | institutionName           | transaction > creditor > institutionName  |
 | AssetManager  | amLocation               | YES  | institutionLocation       | transaction > creditor > institutionLocation  |
-| AssetManager  | amAddress                | NO   |
+| AssetManager  | amAddress                | NO   |||
 | Transaction   | transactionId            | YES  | externalReferenceNumber   | transaction > details > externalReferenceNumber  |
 | Transaction   | externalRef              | YES  | externalReferenceNumber   | transaction > details > externalReferenceNumber  |
 | Transaction   | type                     | YES  | transactionType           | transaction > details > transactionType  |
 | Transaction   | performanceRelevant      | YES  | performanceRelevance      | transaction > details > performanceRelevance  |
 | Transaction   | statementOption          | YES  | statementOption           | transaction > details > statementOption  |
 | Transaction   | nameClientInStatement    | YES  | namingClient              | transaction > details > namingClient  |
-| Transaction   | dates                    | NO   |
-| Transaction   | creditor                 | YES  |
-| Transaction   | debitor                  | YES  |
-| Transaction   | amount                   | YES  |
+| Transaction   | dates                    | NO   |||
+| Transaction   | creditor                 | YES  |||
+| Transaction   | debitor                  | YES  |||
+| Transaction   | amount                   | YES  |||
 | Dates         | valueDate                | YES  | valueDate                 | transaction > details > valueDate  |
 | Dates         | executionDate            | YES  | executionDate             | transaction > details > executionDate  |
 | Creditor      | creditorIban             | YES  | creditorIban              | transaction > creditor > creditorIban  |
-| Creditor      | creditorAccountRef       | NO   |
+| Creditor      | creditorAccountRef       | NO   |||
 | Creditor      | bookingTextCreditor      | YES  | bookingTextCreditor       | transaction > details > bookingTextCreditor  |
 | Creditor      | reasonCreditor           | YES  | transactionReasonCreditor | transaction > details > transactionReasonCreditor  |
 | Debitor       | debtorName               | YES  | debitorName               | transaction > debitor > debitorName  |
@@ -105,7 +105,7 @@ erDiagram
 
 ---
 
-### 🛑 Out-of-Scope Fields
+### Out-of-Scope Fields
 
 | Field                  | Reason for Exclusion                                                                 |
 |------------------------|--------------------------------------------------------------------------------------|
