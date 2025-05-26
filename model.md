@@ -25,13 +25,13 @@ erDiagram
         boolean performanceRelevant
         enum statementOption
         boolean nameClientInStatement
-        object details
+        object dates
         Creditor creditor
         Debitor debitor
         Amount amount
     }
 
-    Details {
+    Dates {
         date valueDate
         date executionDate
     }
