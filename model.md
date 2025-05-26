@@ -1,70 +1,69 @@
-**Entity Relationships of a Payment Order (color-coded)**
+**Entity Relationships of a Payment Order**
 
-_🟢 Green = SFTI-compatible entity (all fields)_  
-_🔴 Red = Not part of current SFTI CA Payment API (or mostly incompatible)_
+_Column 3 = SFTI compatibility: YES = compatible, NO = not supported_
 
 ```mermaid
-classDiagram
+erDiagram
 
-class PaymentOrder {
-    +string paymentOrderId
-    +date creationDate
-    +enum status
-    +object assetManager
-    +Transaction[] transactions
-}
+    PaymentOrder {
+        string paymentOrderId YES
+        date creationDate NO
+        enum status NO
+        object assetManager NO
+        Transaction[] transactions NO
+    }
 
-class AssetManager {
-    +string amId
-    +string amName
-    +string amLocation
-    +string amAddress
-}
+    AssetManager {
+        string amId NO
+        string amName YES
+        string amLocation YES
+        string amAddress NO
+    }
 
-class Transaction {
-    +string transactionId
-    +string externalRef
-    +enum type
-    +boolean performanceRelevant
-    +enum statementOption
-    +boolean nameClientInStatement
-    +object dates
-    +Creditor creditor
-    +Debitor debitor
-    +Amount amount
-}
+    Transaction {
+        string transactionId YES
+        string externalRef YES
+        enum type YES
+        boolean performanceRelevant YES
+        enum statementOption YES
+        boolean nameClientInStatement YES
+        object dates NO
+        Creditor creditor YES
+        Debitor debitor YES
+        Amount amount YES
+    }
 
-class Dates {
-    +date valueDate
-    +date executionDate
-}
+    Dates {
+        date valueDate YES
+        date executionDate YES
+    }
 
-class Creditor {
-    +string creditorIban
-    +string creditorAccountRef
-    +string bookingTextCreditor
-    +string reasonCreditor
-}
+    Creditor {
+        string creditorIban YES
+        string creditorAccountRef NO
+        string bookingTextCreditor YES
+        string reasonCreditor YES
+    }
 
-class Debitor {
-    +string debtorName
-    +string debtorIban
-    +string debtorAccountRef
-    +string bookingTextDebitor
-    +string reasonDebitor
-}
+    Debitor {
+        string debtorName YES
+        string debtorIban YES
+        string debtorAccountRef YES
+        string bookingTextDebitor YES
+        string reasonDebitor YES
+    }
 
-class Amount {
-    +string currency
-    +float amount
-}
+    Amount {
+        string currency YES
+        float amount YES
+    }
 
-PaymentOrder --> AssetManager : hasOne
-PaymentOrder --> Transaction : hasMany
-Transaction --> Dates : hasOne
-Transaction --> Creditor : hasOne
-Transaction --> Debitor : hasOne
-Transaction --> Amount : hasOne
+    PaymentOrder ||--|| AssetManager : hasOne
+    PaymentOrder ||--o{ Transaction : hasMany
+    Transaction ||--|| Dates : hasOne
+    Transaction ||--|| Creditor : hasOne
+    Transaction ||--|| Debitor : hasOne
+    Transaction ||--|| Amount : hasOne
 ```
 
 ---
