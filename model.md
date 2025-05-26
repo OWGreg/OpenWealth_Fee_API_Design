@@ -58,7 +58,7 @@ erDiagram
 
     PaymentOrder ||--|| AssetManager : belongsTo
     PaymentOrder ||--o{ Transaction : includes
-    Transaction ||--|| Details : has
+    Transaction ||--|| Dates : has
     Transaction ||--|| Creditor : paysTo
     Transaction ||--|| Debitor : paidBy
     Transaction ||--|| Amount : involves
