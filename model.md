@@ -9,6 +9,6 @@ erDiagram
         string paymentOrderId YES
         date creationDate NO
         enum status NO
-        object assetManager NO
+        object externalAssetManager NO
         Transaction[] transactions NO
     }
