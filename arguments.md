@@ -12,8 +12,8 @@ This document outlines key reasons why banks, especially those already engaged w
 
 ## 2. Structured and auditable fee instruction handling
 
-- The API replaces manual, error-prone processes based on Excel, email, or PDF.
-- It ensures consistent, transparent, and traceable handling of fee instructions.
+- The API replaces manual, error-prone processes based on an Excel-template.
+- It ensures consistent, transparent, and traceable handling of fee instructions with a high chance of STP.
 - This approach supports internal control requirements, audit readiness, and regulatory compliance.
 
 ## 3. Clear separation from standard payment orders
@@ -42,7 +42,7 @@ This document outlines key reasons why banks, especially those already engaged w
 
 ## 7. Increased return on existing OpenWealth investments
 
-- Banks that have already adopted OpenWealth APIs can integrate the Fee API with minimal additional investment.
+- Banks that have already adopted the SFTI payments API can integrate the Fee API with minimal additional investment.
 - This maximizes the value of their current API infrastructure.
 - It contributes to the overall maturity and consistency of OpenWealth-based interfaces.
 
