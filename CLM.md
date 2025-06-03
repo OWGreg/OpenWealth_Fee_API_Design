@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
 
     %% Anpassungen an Customer
