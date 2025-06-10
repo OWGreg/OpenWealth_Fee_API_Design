@@ -22,6 +22,10 @@ erDiagram
         string transactionId
         string externalRef
         enum type
+        date valueDate
+        date executionDate
+        string currency
+        float amount
         boolean performanceRelevant
         enum statementOption
         boolean nameClientInStatement
@@ -31,10 +35,6 @@ erDiagram
         Amount amount
     }
 
-    Dates {
-        date valueDate
-        date executionDate
-    }
 
     Creditor {
         string creditorIban
@@ -51,17 +51,12 @@ erDiagram
         string reasonDebitor
     }
 
-    Amount {
-        string currency
-        float amount
-    }
 
     PaymentOrder ||--|| AssetManager : hasOne
     PaymentOrder ||--o{ Transaction : hasMany
-    Transaction ||--|| Dates : hasOne
     Transaction ||--|| Creditor : hasOne
     Transaction ||--|| Debitor : hasOne
-    Transaction ||--|| Amount : hasOne
+
 ```
 
 ---
