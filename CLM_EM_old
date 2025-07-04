@@ -1,3 +1,5 @@
+```mermaid
+
 erDiagram
     CUSTOMER ||--o{ PERSON2CUSTOMERRELATION : has
     CUSTOMER ||--o{ DOCUMENT : has
