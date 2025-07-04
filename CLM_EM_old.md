@@ -1,7 +1,5 @@
 ```mermaid
-
 erDiagram
-
     CUSTOMER {
         string customerId PK
         string name
