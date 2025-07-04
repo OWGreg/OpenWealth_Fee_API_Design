@@ -154,7 +154,7 @@ erDiagram
     Person ||--o| Education : hasOne
     Person ||--o| Wealth : hasOne
     Person ||--o| Risk : hasOne
-
-    Wealth ||--o{ FundFlows : hasMultiple
+    Person ||--o{ FundFlows : hasMultiple
+    
     Risk ||--o{ CorporateInsider : hasMultiple
     Risk ||--o{ MajorShareholder : hasMultiple
